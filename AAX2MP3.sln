@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AAX2MP3", "AAX2MP3\AAX2MP3.pyproj", "{30E895BC-1605-4BD9-80B9-0304E019E416}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30E895BC-1605-4BD9-80B9-0304E019E416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E895BC-1605-4BD9-80B9-0304E019E416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A2066AC-65E3-4780-951D-CC8692D17465}
+	EndGlobalSection
+EndGlobal
