@@ -5,6 +5,7 @@ import tempfile
 import json
 import html
 import subprocess
+import re
 
 class AAXConverter:
     def __init__(self, auth_code, aax_file, base_dir):
@@ -68,7 +69,7 @@ class AAXConverter:
                 print()
                 print('Extracting chapters to individual files...')
 
-                output_dir = '{}\\{}\\{}'.format(self.base_dir, m_album_artist, m_title)
+                output_dir = re.sub('[\\/:"*?<>|]+', '-', '{}\\{}\\{}'.format(self.base_dir, m_album_artist, m_title))
 
                 os.makedirs(output_dir, exist_ok = True)
 
@@ -78,7 +79,7 @@ class AAXConverter:
                     c_start    = m_chapter['start_time']
                     c_end      = m_chapter['end_time']
                     c_title    = m_chapter['tags']['title']
-                    c_filename = '{}\\{:02d} - {}.mp3'.format(output_dir, c_track, c_title)
+                    c_filename = re.sub('[\\/:"*?<>|]+', '-', '{}\\{:02d} - {}.mp3'.format(output_dir, c_track, c_title))
 
                     print('Chapter {:02d} [{}] to {}'.format(c_track, c_title, c_filename))
                     
