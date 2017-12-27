@@ -55,19 +55,19 @@ class AAXConverter:
             print('Chapters: {}'.format(m_num_chapters))
             print()
             print('Decrypting and converting to MP3 [{}]...'
-                    .format(tmp_cnv_filename))
+                  .format(tmp_cnv_filename))
 
             convert = subprocess.run(['ffmpeg', '-loglevel',
-                                        'error', '-stats',
-                                        '-activation_bytes', self.auth_code,
-                                        '-i', self.aax_file, '-vn',
-                                        '-codec:a', 'libmp3lame',
-                                        '-codec:v', 'copy',
-                                        '-ab', m_bit_rate,
-                                        '-map_metadata', '-1',
-                                        tmp_cnv_filename])
+                                      'error', '-stats',
+                                      '-activation_bytes', self.auth_code,
+                                      '-i', self.aax_file, '-vn',
+                                      '-codec:a', 'libmp3lame',
+                                      '-codec:v', 'copy',
+                                      '-ab', m_bit_rate,
+                                      '-map_metadata', '-1',
+                                      tmp_cnv_filename])
 
-            if convert.returncode != 0:
+            if convert.returncode:
                 raise Exception('An error occurred when running ffmpeg')
 
             print()
@@ -92,25 +92,25 @@ class AAXConverter:
                                     .format(output_dir, c_track, c_title))
 
                 print('Chapter {:02d} [{}] to {}'
-                        .format(c_track, c_title, c_filename))
+                      .format(c_track, c_title, c_filename))
 
                 chaptrack = subprocess.run(
                     ['ffmpeg', '-loglevel', 'error', '-stats',
-                    '-i', tmp_cnv_filename,
-                    '-codec:a', 'copy', '-codec:v', 'copy',
-                    '-ss', c_start, '-to', c_end,
-                    '-map_metadata', '-1',
-                    '-id3v2_version', '3',
-                    '-metadata', 'track={}'.format(c_track),
-                    '-metadata', 'title={}'.format(c_title),
-                    '-metadata', 'artist={}'.format(m_artist),
-                    '-metadata', 'album_artist={}'.format(m_album_artist),
-                    '-metadata', 'album={}'.format(m_title),
-                    '-metadata', 'comment={}'.format(m_comment),
-                    '-metadata', 'copyright={}'.format(m_copyright),
-                    '-metadata', 'date={}'.format(m_date),
-                    '-metadata', 'genre={}'.format(m_genre),
-                    c_filename])
+                     '-i', tmp_cnv_filename,
+                     '-codec:a', 'copy', '-codec:v', 'copy',
+                     '-ss', c_start, '-to', c_end,
+                     '-map_metadata', '-1',
+                     '-id3v2_version', '3',
+                     '-metadata', 'track={}'.format(c_track),
+                     '-metadata', 'title={}'.format(c_title),
+                     '-metadata', 'artist={}'.format(m_artist),
+                     '-metadata', 'album_artist={}'.format(m_album_artist),
+                     '-metadata', 'album={}'.format(m_title),
+                     '-metadata', 'comment={}'.format(m_comment),
+                     '-metadata', 'copyright={}'.format(m_copyright),
+                     '-metadata', 'date={}'.format(m_date),
+                     '-metadata', 'genre={}'.format(m_genre),
+                     c_filename])
 
                 c_track += 1
 
